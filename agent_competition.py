@@ -9,18 +9,31 @@ from checkers_game import *
 
 
 def select_child(children, color, depth_limit):
-    child_list = []
+    """
+    Return the child with the most likely 
+    heuristic for the checker game
 
+    : param children: List of children from the action
+    : param color: The color determines the player
+    : param depth_limit: A limit on the depth required to 
+    calculate the heuristic
+    """
+    child_list = []
     children = clear_unsafe_moves(children, color)
     for child in children:
         child_list.append((compute_heuristic(child, color, depth_limit), child))
-    # print(children)
     copies1 = sorted(child_list, key=lambda x: x[0], reverse=True)
-    # print(copies1)
     return copies1[0][1]
 
 
 def clear_unsafe_moves(children, color):
+    """
+    Return a list of child moves and clears the
+    unsafe moves
+
+    : param children: List of children
+    : param color: The player if its the red player or blue player
+    """
     copy_children = []
     for child in children:
         copy_children.append(child)
