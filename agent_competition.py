@@ -68,6 +68,14 @@ def clear_unsafe_moves(children, color):
 
 
 def get_king_moves(children, color):
+    """
+    This gets the moves for the king a king is a 
+    piece that is capitalized and can move 2 steps in
+    the board 
+
+    : param children: The list of child moves
+    : color: Red or Blue 
+    """
     king_children = []
     for child in children:
         for i in range(8):
@@ -78,6 +86,14 @@ def get_king_moves(children, color):
 
 
 def compute_utility(state, color):
+    """
+    Computes the utlity function of the state which 
+    is that it returns the sum of red count in the board
+    and blue count and we have the difference of them
+
+    : param state the state of the board
+    : color the red or blue player
+    """
     b_count = 0
     r_count = 0
 
@@ -274,10 +290,6 @@ def _simulate(child, depth):
                     player = 'r'
                 return player
 
-        # i = random.randint(0, len(children) - 1)  # change this to a heuristic
-        # print(i)
-        # print(children)
-        # child = children[i]
         child = select_child(children, player, depth)
         if player == 'r':
             player = 'b'
